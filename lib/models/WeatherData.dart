@@ -25,7 +25,7 @@ class WeatherEntry {
   final int windSpeed;
   final int temperature;
   final int humidity;
-  final double barometricPressure;
+  final int barometricPressure;
   final DateTime? deletedAt;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -37,7 +37,7 @@ class WeatherEntry {
     this.windSpeed = 0,
     this.temperature = 0,
     this.humidity = 0,
-    this.barometricPressure = 0.0,
+    this.barometricPressure = 0,
     this.deletedAt,
     this.createdAt,
     this.updatedAt,
@@ -49,9 +49,15 @@ class WeatherEntry {
     return WeatherEntry(
       dateTime: json['dateTime'],
       windSpeed: json['windSpeed'],
-      temperature: json['temperature'],
-      humidity: json['humidity'],
-      barometricPressure: json['barometricPressure'],
+      temperature: json['temperature'] is int
+          ? json['temperature']
+          : (json['temperature'] as double).toInt(),
+      humidity: json['humidity'] is int
+          ? json['humidity']
+          : (json['humidity'] as double).toInt(),
+      barometricPressure: json['barometricPressure'] is int
+          ? json['barometricPressure']
+          : (json['barometricPressure'] as double).toInt(),
       deletedAt:
           json['deletedAt'] != null ? DateTime.parse(json['deletedAt']) : null,
       createdAt: DateTime.parse(json['createdAt']),
