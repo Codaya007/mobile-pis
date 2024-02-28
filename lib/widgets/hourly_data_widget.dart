@@ -132,12 +132,18 @@ class HourlyDataWidget extends StatelessWidget {
 
   Future<Pronosticos> fetchData() async {
     try {
-      final response = await http.get(Uri.parse(ApiEndPoints.baseUrlPython));
+      final response = await http.get(Uri.parse(ApiEndPoints.baseUrlPython),
+          headers: {'Access-Control-Allow-Origin': '*'});
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonData = json.decode(response.body);
+
+        //  print(response.body);
+
         return Pronosticos.fromJson(jsonData);
       } else {
+        print('Status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
         throw Exception('Error al cargar los datos');
       }
     } catch (error) {

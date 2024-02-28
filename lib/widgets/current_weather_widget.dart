@@ -119,7 +119,7 @@ class _CurrentWeatherWidgetState extends State<CurrentWeatherWidget> {
   }
 
   Future<String> fetchWeatherType(
-      double temperature, int humidity, double pressure) async {
+      int temperature, int humidity, double pressure) async {
     final Map<String, dynamic> requestData = {
       "temperature": temperature,
       "humidity": humidity,
@@ -169,7 +169,7 @@ class _CurrentWeatherWidgetState extends State<CurrentWeatherWidget> {
 
     return FutureBuilder<String>(
       future: fetchWeatherType(
-        double.parse(widget.lastTemperature.replaceAll('°C', '')),
+        int.parse(widget.lastTemperature.replaceAll('°C', '')),
         int.parse(widget.lastHumidity.replaceAll('%', '')),
         double.parse(widget.lastBarometricPressure.replaceAll('Pa', '')),
       ),

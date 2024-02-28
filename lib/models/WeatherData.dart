@@ -23,7 +23,7 @@ class WeatherData {
 class WeatherEntry {
   final String dateTime;
   final int windSpeed;
-  final double temperature;
+  final int temperature;
   final int humidity;
   final double barometricPressure;
   final DateTime? deletedAt;
@@ -35,7 +35,7 @@ class WeatherEntry {
   WeatherEntry({
     this.dateTime = '',
     this.windSpeed = 0,
-    this.temperature = 0.0,
+    this.temperature = 0,
     this.humidity = 0,
     this.barometricPressure = 0.0,
     this.deletedAt,
